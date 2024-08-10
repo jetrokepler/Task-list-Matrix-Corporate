@@ -1,14 +1,14 @@
-import { useState } from 'react'
-import './App.css'
+import React, { useState } from 'react';
+//import { Button } from "@/components/ui/button"
+import { TaskAdd } from './components/TaskAdd.tsx';
+import { Task } from './components/Task.tsx';
 
-function App() {
-  //const [count, setCount] = useState(0)
-
+export function App() {
   return (
-    <>
-
-    </>
-  )
-}
+    
+    <div><TaskAdd/><Task/></div>
+    
+  );
+};
 
 export default App
