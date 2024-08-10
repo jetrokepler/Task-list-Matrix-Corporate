@@ -14,7 +14,13 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-export function TaskAdd() {
+interface TaskAddProps {
+  onSave: () => void; // Prop para passar a função de salvar
+}
+
+
+export function TaskAdd(props: TaskAddProps) {
+  const { onSave } = props; // Desestrutura as props dentro da função
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -36,7 +42,7 @@ export function TaskAdd() {
         </div>
         <DialogFooter className="sm:justify-end">
           <DialogClose asChild>
-            <Button type="button" variant="default">
+            <Button type="button" variant="default" onClick={onSave}>
               Salvar
             </Button>
           </DialogClose>

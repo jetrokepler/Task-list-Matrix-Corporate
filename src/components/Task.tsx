@@ -20,9 +20,12 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 
+interface TaskProps {
+  id: number;
+  onContinue: () => void;
+}
 
-
-export function Task() {
+export function Task({ onContinue }: TaskProps) {
   return (
     <Card className="w-[350px]">
       <CardHeader>
@@ -50,7 +53,7 @@ export function Task() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancelar</AlertDialogCancel>
-          <AlertDialogAction>Continuar</AlertDialogAction>
+          <AlertDialogAction onClick={onContinue}>Continuar</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
