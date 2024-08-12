@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import { TaskAdd } from './components/TaskAdd';
 import { Task } from './components/Task';
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
 interface Task {
   id: number;
+  title: string;
+  description: string;
 }
 
 export function App() {
   // Estado para armazenar uma lista de componentes Task
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  // Função para ser chamada ao clicar no botão "Salvar"
-  const handleSave = () => {
-    const newTask = { id: Date.now() }; // Cria um Task com um id único
+  // Função para adicionar um novo Task
+  const handleSave = (title: string, description: string) => {
+    const newTask = { id: Date.now(), title, description };
     setTasks([...tasks, newTask]);
   };
 
@@ -21,15 +24,37 @@ export function App() {
     setTasks(tasks.filter(task => task.id !== id));
   };
 
-  return (
-    <div>
-      {/* Componente TaskAdd passa a função handleSave para ser chamada ao clicar no botão */}
-      <TaskAdd onSave={handleSave} />
+  // Função para salvar as edições de um Task
+  const handleSaveEdit = (id: number, newTitle: string, newDescription: string) => {
+    setTasks(tasks.map(task =>
+      task.id === id
+        ? { ...task, title: newTitle, description: newDescription }
+        : task
+    ));
+  };
 
-      {/* Renderiza todos os componentes Task da lista */}
-      {tasks.map(task => (
-        <Task key={task.id} id={task.id} onContinue={() => handleRemove(task.id)} />
-      ))}
+  return (
+    <div className='flex justify-center flex-col gap-6'>
+      <ScrollArea className="mr-48 ml-48 mt-40 rounded-2xl border break-words">
+        <div className="flex gap-4 p-4">
+          {/* Renderiza todos os componentes Task da lista */}
+          {tasks.map(task => (
+            <Task
+              key={task.id}
+              id={task.id}
+              title={task.title}
+              description={task.description}
+              onContinue={() => handleRemove(task.id)}
+              onSaveEdit={handleSaveEdit}
+            />
+          ))}
+          {/* Componente TaskAdd passa a função handleSave para ser chamada ao clicar no botão */}
+        </div>
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
+      <div className='flex justify-center items-center'>
+      <TaskAdd onSave={handleSave}/>
+      </div>
     </div>
   );
 }

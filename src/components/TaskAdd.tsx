@@ -1,4 +1,4 @@
-
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import {
@@ -15,12 +15,16 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
 interface TaskAddProps {
-  onSave: () => void; // Prop para passar a função de salvar
+  onSave: (title: string, description: string) => void; // Modificado para passar os valores
 }
-
 
 export function TaskAdd(props: TaskAddProps) {
   const { onSave } = props; // Desestrutura as props dentro da função
+
+  // Estados para armazenar os valores do Input e Textarea
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -36,13 +40,16 @@ export function TaskAdd(props: TaskAddProps) {
         <div className="flex items-center space-x-2">
           <div className="grid flex-1 gap-2">
           <Label htmlFor="name">Título</Label>
-          <Input id="name" placeholder="Passear com o totó"/>
-          <Textarea placeholder="Ps: Lembrar de passar na farmácia pra comprar aquela caixa de Halls." />
+          <Input id="name" placeholder="Passear com o totó"
+           value={title}
+           onChange={(e) => setTitle(e.target.value)}/>
+          <Textarea placeholder="Ps: Lembrar de passar na farmácia pra comprar aquela caixa de Halls." value={description}
+              onChange={(e) => setDescription(e.target.value)}/>
           </div>
         </div>
         <DialogFooter className="sm:justify-end">
           <DialogClose asChild>
-            <Button type="button" variant="default" onClick={onSave}>
+            <Button type="button" variant="default" onClick={() => onSave(title, description)}>
               Salvar
             </Button>
           </DialogClose>
