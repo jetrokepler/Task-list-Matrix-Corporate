@@ -36,19 +36,23 @@ export function App() {
   return (
     <div className='flex justify-center flex-col gap-6'>
       <ScrollArea className="mr-48 ml-48 mt-40 rounded-2xl border break-words">
-        <div className="flex gap-4 p-4">
-          {/* Renderiza todos os componentes Task da lista */}
-          {tasks.map(task => (
-            <Task
-              key={task.id}
-              id={task.id}
-              title={task.title}
-              description={task.description}
-              onContinue={() => handleRemove(task.id)}
-              onSaveEdit={handleSaveEdit}
-            />
-          ))}
-          {/* Componente TaskAdd passa a função handleSave para ser chamada ao clicar no botão */}
+        <div className={`flex gap-4 p-4 ${tasks.length === 0 ? 'justify-center items-center min-h-[250px]' : ''}`}> 
+          {
+            tasks.length === 0 ? (
+            <p>Não existem tasks ainda. Adicione uma nova!</p>
+            ) : (
+              tasks.map(task => (
+              <Task
+                key={task.id}
+                id={task.id}
+                title={task.title}
+                description={task.description}
+                onContinue={() => handleRemove(task.id)}
+                onSaveEdit={handleSaveEdit}
+              />
+            ))
+          )
+          }
         </div>
         <ScrollBar orientation="horizontal" />
       </ScrollArea>

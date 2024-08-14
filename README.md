@@ -1,31 +1,27 @@
-# Task list
+# reactjs-task-list
+![React](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=white&style=flat-square)
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=black&style=flat-square)
+![Shadcn-UI](https://img.shields.io/badge/-Shadcn--UI-22D3EE?logo=tailwindcss&logoColor=white&style=flat-square) <!-- Usando Tailwind como substituto, pois não há um ícone oficial do Shadcn-UI -->
+![ESLint](https://img.shields.io/badge/-ESLint-4B32C3?logo=eslint&logoColor=white&style=flat-square)
+![Prettier](https://img.shields.io/badge/-Prettier-F7B93E?logo=prettier&logoColor=white&style=flat-square)
 
-Participantes:
+<p>Integrantes:<p>
 
-- Pedro Henrique
-- Leandro
-- Jetro
+ - Jetro Kepler
+ - Leandro Vital Pinho
+ - Pedro Henrique Oliveira
 
-Neste proneto utilizamos algun elementos do shadcn-ui, para construção da interface de usuário.
+ <p>Este foi o nosso primeiro projeto utilizando useState no React.js, e entre os principais desafios do projeto, esteve a manipulação do estado do React (useState) onde estamos em adaptação. Nossa principal dificuldade foi na renderização da lista de componentes "Task" e na criação das funções de editar e deletar tasks. O nosso foco era cumprir a descrião abaixo.</p>
 
-Tecnologias utilizadas:
-- Vite
-- React.js
-- TypeScript
-- EsLint
-- Prettier
-- shadcn-ui (TailwindCSS)
+> O objetivo desse projeto é a criação de uma aplicação de task list, usando as tecnologias abordadas. A aplicação não vai consumir uma API, irá armazenar as informações em localStorage.<br><br>O sistema deve ser capaz de inserir uma listar, criar, atualizar e deletar uma tarefa. Para criar ou atualizar uma nova tarefa o usuário deve informar um nome e descrição.<br><br>A aplicação deve rodar na porta 7654.<br><br>Ps.: Vocês poderão dividir as tarefas entre vocês, da forma que preferirem. Criem um repositório no github e adicionem a descrição. (Deixem e repositório público)<br><br>Configurações: TailwindCSS, Shadcn-UI, ESLint, Prettier<br><br>Components: Task, um componente para representar na listagem uma tarefa criada pelo usuário; TaskAdd, um componente que apresenta um formulário em um "dialog component" com um formulário para cadastrar uma nova tarefa.
 
-Entre os principais desafios do projeto, esteve a manipulação do estado do React (useState) onde estamos em adaptação. Nossa principal dificuldade foi na renderização da lista de componentes "Task".
-
-## Página principal
-
-Os componentes "Task" presentes na página estão sendo renderizados dentro de um componente "scroll-area".
-
-![a](public\1.png)
-
-## Componente TaskAdd
-![](public\2.png)
-
+## Página principal sem tasks
+![Página principal sem tasks](./public/1.png)
+## Componente TaskAdd 
+![Componente TaskAdd](./public/2.png)
 ## Editar Task
-![](public\3.png)
+![Editar Task](./public/3.png)
+## Página principal com tasks
+![Página principal com tasks](./public/4.png)
+## Encerrar task
+![Encerrar task](./public/5.png)
