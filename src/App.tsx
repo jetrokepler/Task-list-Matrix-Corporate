@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+// App.tsx
+import { useEffect, useState } from 'react';
 import { TaskAdd } from './components/TaskAdd';
 import { Task } from './components/Task';
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { useLocalStorage } from './hooks/UseLocalStorage';
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 interface Task {
   id: number;
@@ -10,8 +12,7 @@ interface Task {
 }
 
 export function App() {
-  // Estado para armazenar uma lista de componentes Task
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useLocalStorage<Task[]>('tasks', []);
 
   // Função para adicionar um novo Task
   const handleSave = (title: string, description: string) => {
@@ -36,12 +37,11 @@ export function App() {
   return (
     <div className='flex justify-center flex-col gap-6'>
       <ScrollArea className="mr-48 ml-48 mt-40 rounded-2xl border break-words">
-        <div className={`flex gap-4 p-4 ${tasks.length === 0 ? 'justify-center items-center min-h-[250px]' : ''}`}> 
-          {
-            tasks.length === 0 ? (
+        <div className={`flex gap-4 p-4 ${tasks.length === 0 ? 'justify-center items-center min-h-[250px]' : ''}`}>
+          {tasks.length === 0 ? (
             <p>Não existem tasks ainda. Adicione uma nova!</p>
-            ) : (
-              tasks.map(task => (
+          ) : (
+            tasks.map(task => (
               <Task
                 key={task.id}
                 id={task.id}
@@ -51,13 +51,12 @@ export function App() {
                 onSaveEdit={handleSaveEdit}
               />
             ))
-          )
-          }
+          )}
         </div>
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
       <div className='flex justify-center items-center'>
-      <TaskAdd onSave={handleSave}/>
+        <TaskAdd onSave={handleSave} />
       </div>
     </div>
   );

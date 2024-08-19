@@ -32,7 +32,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { TypeOutline } from "lucide-react";
 
 interface TaskProps {
   id: number;
